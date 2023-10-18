@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>REPRESENTANTE LEGAL</title>
+        <link rel="stylesheet" type="text/css" href="estilos.css" />
+        <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>    
+          <script>
+            var socket = io.connect('http://localhost:3000/', {
+                forceNet: true
+            })
+            socket.on('asignacionEmpresa', (data)=>{  
+            var nombreEmpresaElement = document.getElementById('nombreEmpresa');
+            nombreEmpresaElement.value = 'Se le ha asignado una nueva empresa: '+data.nombreEmpresa;
+             
+            var tabla = document.getElementById("tablaEmpresas");  
+            var newRow = tabla.insertRow(tabla.rows.length);
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            cell1.style.display = "none"; 
+            cell1.innerHTML = data.representanteLegalId;
+            cell2.innerHTML = data.nombreEmpresa; 
+
+            var comboBox = document.getElementById("empresa");  
+            var option = document.createElement("option");
+            option.value = data.representanteLegalId;
+            option.text =  data.nombreEmpresa; 
+            comboBox.appendChild(option);
+
+            setTimeout(function() {
+                nombreEmpresaElement.value = ''; // Borra el valor del campo
+            }, 4000); // 4000 milisegundos (4 segundos) 
+            })
+          </script>
+          
+          <div class="mi-div"><input type="text" id="nombreEmpresa" /></div> 
+          <div class="container"> 
+         
+            <div class="inner-div"> 
+              <center><label for="ruc"><h2>REPRESENTANTE LEGAL</h2></label> </center> 
+              <div >
+                <label for="ruc" >Ruc:</label> 
+              </div>
+              <div > 
+                <input type="text" id="ruc" value="" placeholder="Escriba el ruc">
+              </div>
+              <div>
+                <label for="cedula" >Cedula:</label>
+              </div>
+              <div>
+                <input type="text" id="cedula" value="" placeholder="Escriba la cedula" class="input" />
+              </div>
+              <div>
+                <label for="nombre">Nombre:</label>
+              </div>
+              <div> 
+                <input type="text" id="nombre" value="" placeholder="Escriba el nombre" class="input"/>
+              </div>
+              <div>
+                <label for="apellido">Apellido:</label>
+              </div>
+              <div>
+                <input type="text" id="apellido" value="" placeholder="Escriba el apellido" class="input" />
+              </div>
+              <div>
+                <label for="email">Email:</label>
+              </div>
+              <div>
+                <input type="text" id="email" value="" placeholder="Escriba el email" class="input" />
+              </div>      
+              <div>
+                <label for="domicilio">Domicilio:</label>
+              </div>
+              <div>
+                <input type="text" id="domicilio" value="" placeholder="Escriba el domicilio" class="input"/>
+              </div>   
+              <div>
+                <label for="telefono">Telefono:</label>
+              </div>
+              <div>  
+                <input type="text" id="telefono" value="" placeholder="Escriba el telefono" class="input"/>
+              </div> 
+              <div>
+                <label for="empresa">Empresa:</label>
+              </div>
+              <div>
+                    <select id="empresa" name="empresa">
+                        <option value="" disabled selected>Selecciona una empresa</option>
+                        </select>
+                        <button onclick="cargarEnTabla()" class="button-azul">Agregar</button>
+                        <script>
+                          // Función para cargar opciones en el combo
+                          function cargarCombo() {
+                              var comboBox = document.getElementById("empresa");  
+                              // Realizar una solicitud GET al servicio (supongamos que utiliza fetch)
+                              fetch('/empresa')
+                                  .then(response => response.json())
+                                  .then(data => {
+                                      // Iterar a través de los datos del servicio y agregar opciones al combo box
+                                      data.body.forEach(empresa => {
+                                          var option = document.createElement("option");
+                                          option.value = empresa._id; // El valor que se enviará al servidor
+                                          option.text = empresa.nombre; // El texto que se mostrará al usuario
+                                          comboBox.appendChild(option);
+                                      });
+                                      console.error('Entro:', error);
+                                  })
+                                  .catch(error => {
+                                    
+                                  });
+                          } 
+                          // Llama a la función para cargar el combo cuando se carga la página
+                          cargarCombo();
+                          </script>   
+              </div>    
+
+              <div>
+                <label for="ListaEmpresas">Lista Empresas:</label>
+              </div>
+              <div>  
+                  <table id="tablaEmpresas" class="styled-table"> 
+                      <tbody>
+                        <!-- Aquí se cargarán las filas de la tabla -->
+                      </tbody>
+                    </table> 
+              </div> 
+              <div>
+                <center>
+                  <button onclick="guardar_representantelegal()" class="button">Guardar</button>
+                  <button onclick="cancelar_producto()" class="button-rojo">Cancelar</button>
+                </center>  
+              </div>  
+            </div> 
+          </div>    
+    </body>  
+</html>

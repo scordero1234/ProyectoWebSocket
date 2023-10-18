@@ -1,0 +1,158 @@
+/* Estilo para los campos de entrada de texto */
+input {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 265px;
+  }
+  
+  /* Estilo para los botones */
+  button {
+    padding: 8px 8px;
+    background-color: #0f9b26;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .button-rojo {
+    padding: 8px 8px;
+    background-color: #d90000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .button-azul {
+    padding: 8px 8px;
+    background-color: #052598;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+ 
+  
+  /* Estilo para etiquetas de formulario */
+  label {
+    font-weight: bold;
+    font-family: Calibri Light, sans-serif; 
+    
+  }
+  
+  /* Estilo para el fondo de la tabla */
+  table {
+    background-color: #f0f0f0;
+    border-collapse: collapse;
+    width: 35%;
+  }
+  
+  /* Estilo para las celdas de la tabla */
+  td {
+    padding: 4px;
+    border: none;
+    font-family: Calibri Light, sans-serif;
+  }
+  
+  /* Cambiar el fondo de un campo de entrada específico con el ID "ruc" */
+  #ruc {
+    background-color: #ffffcc;
+  }
+
+  /* Estilo para el combo box */
+select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 220px; /* Ancho del combo box */
+    font-size: 16px; /* Tamaño de fuente */
+    background-color: #f0f0f0; /* Color de fondo */
+    color: #333; /* Color del texto */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el combo box */
+  }
+  
+  /* Estilo para las opciones del combo box */
+  select option {
+    padding: 5px;
+    background-color: #fff; /* Color de fondo de las opciones */
+    color: #333; /* Color del texto de las opciones */
+  }
+  
+  /* Estilo para el combo box cuando se enfoca (selecciona) */
+  select:focus {
+    border-color: #0074d9; /* Cambia el color del borde al enfocar */
+    outline: none; /* Quita el resplandor predeterminado al enfocar en algunos navegadores */
+  }
+  
+  /* Estilo para el combo box cuando se pasa el mouse sobre las opciones */
+  select option:hover {
+    background-color: #0074d9; /* Cambia el color de fondo al pasar el mouse */
+    color: #fff; /* Cambia el color del texto al pasar el mouse */
+  }
+
+  /* Estilos generales para la tabla */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #f7f6f6;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el encabezado */
+.styled-table th {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+  padding: 12px 15px;
+  text-align: left;
+  border: none;
+  font-family: Calibri Light, sans-serif;
+}
+
+/* Estilos para las celdas de datos */
+.styled-table td {
+  padding: 10px 15px;
+  border: none;
+  font-family: Calibri Light, sans-serif;
+}
+
+/* Estilos para filas alternas (si lo deseas) */
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f7f6f6;
+}
+
+/* Aplicar justificación a la derecha en un label */
+label.texto-derecha {
+  text-align: right;
+}
+
+/* Cambiar el fondo de un campo de entrada específico con el ID "ruc" */
+#nombreEmpresa {
+  pointer-events: none;
+  background-color: #e3f1aea9;
+  font-family: Calibri Light, sans-serif;
+  width: 300px;
+  text-align: center;  
+  margin-left: auto;  
+}
+
+.mi-div {
+  text-align: left;
+}
+  
+
+.container {
+  width: 50%; /* Ancho del div principal (ajusta según tus necesidades) */
+  margin: 0 auto; /* Auto-margen horizontal para centrar el div */
+  text-align: center; /* Alinea el contenido interno al centro */
+}
+
+/* Estilo para el div interno (alineado a la derecha) */
+.inner-div {
+  text-align: left; /* Alineación a la derecha para el contenido interno */
+  width: 47%;
+}
