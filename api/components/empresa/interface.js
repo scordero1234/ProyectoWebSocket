@@ -3,15 +3,6 @@ const controller = require('./controller')
 const response = require('../../network/response')
 
 const routes = express.Router()
-
-//para llamar websocket
-/*let app = express()
-const server = require('http').Server(app) 
-const io = require('socket.io')(server)
-  
-io.on('connection', function(socket){
-    console.log('conecto interfaz conectado.') 
-}) */
  
 // Crea una instancia de Express y del servidor HTTP.
 const app = express();
