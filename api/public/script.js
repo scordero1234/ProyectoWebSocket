@@ -108,3 +108,27 @@ function guardar_representantelegal() {
         } )
 }
 
+// Función para cargar opciones en el combo
+function cargarCombo() {
+    var comboBox = document.getElementById("empresa");  
+    // Realizar una solicitud GET al servicio (supongamos que utiliza fetch)
+    fetch('/empresa')
+        .then(response => response.json())
+        .then(data => {
+            // Iterar a través de los datos del servicio y agregar opciones al combo box
+            data.body.forEach(empresa => {
+                var option = document.createElement("option");
+                option.value = empresa._id; // El valor que se enviará al servidor
+                option.text = empresa.nombre; // El texto que se mostrará al usuario
+                comboBox.appendChild(option);
+            });
+            console.error('Entro:', error);
+        })
+        .catch(error => {
+          
+        });
+} 
+
+ // Llama a la función para cargar el combo cuando se carga la página
+ cargarCombo();
+
