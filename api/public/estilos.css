@@ -17,6 +17,17 @@ input {
     cursor: pointer;
   }
 
+  /* Estilo para los botones */
+  .button-login {
+    padding: 8px 8px;
+    background-color: #0f9b26;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 277px; 
+  }
+
   .button-rojo {
     padding: 8px 8px;
     background-color: #d90000;
@@ -155,4 +166,11 @@ label.texto-derecha {
 .inner-div {
   text-align: left; /* Alineación a la derecha para el contenido interno */
   width: 47%;
+}
+
+
+
+/* Estilos para el enlace */
+.link {
+  text-decoration: none; /* Quita el subrayado del enlace */
 }
