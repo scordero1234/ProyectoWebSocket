@@ -168,11 +168,11 @@ function cargarEnTablaRol() {
 
     // Recorre las filas de la tabla
     for (var i = 0; i < tablaRole.rows.length; i++) {
-        var fila = tabla.rows[i];
+        var fila = tablaRole.rows[i];
         var celda = fila.cells[0];
         // Accede al contenido de la celda y muestra en la consola 
         console.log(celda.innerText);
-        empresas_.push({ roles: { _id: celda.innerText } }); 
+        roles_.push({ roles: { _id: celda.innerText } }); 
         
     }  
 
@@ -197,4 +197,14 @@ function cargarEnTablaRol() {
             .then((data) => resolve(data.json()))
             .catch((error) => reject(`[error]: ${error}`));
     })
+} 
+
+function guardar_usuario() {
+    guardarUsuario()
+        .then( (response) => {
+            alert('Registro exitoso.')
+        } )
+        .catch( (error) => {
+            alert('Error al ingresar.')
+        } )
 }
