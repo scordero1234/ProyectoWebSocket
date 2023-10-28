@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>REPRESENTANTE LEGAL</title>
+        <link rel="stylesheet" type="text/css" href="estilos.css" />
+        <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>     
+          <div class="container">  
+            <div class="inner-div"> 
+              <center><label for="ruc"><h2>REGISTRO USUARIO</h2></label> </center> 
+              <div >
+                <label for="usuario" >Usuario:</label> 
+              </div>
+              <div > 
+                <input type="text" id="usuario" value="" placeholder="Ingrese el usuario">
+              </div>
+              <div>
+                <label for="email" >Email:</label>
+              </div>
+              <div>
+                <input type="text" id="email" value="" placeholder="Ingrese el email" class="input" />
+              </div>
+              <div>
+                <label for="contrasenia">Contraseña:</label>
+              </div>
+              <div> 
+                <input type="text" id="contrasenia" value="" placeholder="Ingrese una contraseña" class="input"/>
+              </div> 
+              <div>
+                <label for="role">Role:</label>
+              </div>
+              <div>
+                    <select id="role" name="role">
+                        <option value="" disabled selected>Selecciona un role</option>
+                        </select>
+                        <button onclick="cargarEnTablaRol()" class="button-azul">Agregar</button>
+                        <script>                  
+                          // Llama a la función para cargar el combo cuando se carga la página
+                        // Función para cargar opciones en el combo
+                          function cargarComboRol() {
+                              var comboBox = document.getElementById("role");  
+                              console.log("cargacomboRol")
+                              // Realizar una solicitud GET al servicio (supongamos que utiliza fetch)
+                              fetch('/role')
+                                  .then(response => response.json())
+                                  .then(data => {
+                                      // Iterar a través de los datos del servicio y agregar opciones al combo box
+                                      data.body.forEach(role => {
+                                          var option = document.createElement("option");
+                                          option.value = role._id; // El valor que se enviará al servidor
+                                          option.text = role.name; // El texto que se mostrará al usuario
+                                          comboBox.appendChild(option);
+                                      }); 
+                                  })
+                                  .catch(error => {
+                                    console.error('Error:', error);
+                                  });
+                          } 
+                           // Llama a la función para cargar el combo cuando se carga la página
+                        cargarComboRol();
+                        </script>   
+              </div>    
+
+              <div>
+                <label for="ListaRole">Lista Roles:</label>
+              </div>
+              <div>  
+                  <table id="tablaRoles" class="styled-table"> 
+                      <tbody> 
+                      </tbody>
+                    </table> 
+              </div> 
+              <div>
+                <center>
+                  <button onclick="guardar_usuario()" class="button">Guardar</button>
+                  <button onclick="cancelar_producto()" class="button-rojo">Cancelar</button>
+                </center>  
+              </div>  
+            </div> 
+          </div>    
+    </body>  
+</html>
