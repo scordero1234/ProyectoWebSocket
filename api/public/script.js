@@ -156,3 +156,45 @@ function cargarEnTablaRol() {
       alert("Selecciona un registro válido del combo antes de cargarlo en la tabla.");
     }
   }
+
+
+  function guardarUsuario() {
+
+    let usuario_ = document.getElementById('usuario').value
+    let email_ = document.getElementById('email').value
+    let contrasenia_ = document.getElementById('contrasenia').value 
+    let tablaRole = document.getElementById("tablaRoles");
+    const roles_ = []; 
+
+    // Recorre las filas de la tabla
+    for (var i = 0; i < tablaRole.rows.length; i++) {
+        var fila = tabla.rows[i];
+        var celda = fila.cells[0];
+        // Accede al contenido de la celda y muestra en la consola 
+        console.log(celda.innerText);
+        empresas_.push({ roles: { _id: celda.innerText } }); 
+        
+    }  
+
+    // Crea un objeto JSON con los datos necesarios de representante legal
+    let data = { username:usuario_,  
+                 email:email_, 
+                 password:contrasenia_,
+                 roles: roles_}
+
+    console.log(data);
+
+    return new Promise((resolve, reject) => {
+        const request_options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Indicar que se envían datos JSON
+            },
+            body: JSON.stringify(data) // Convertir los datos a JSON
+        };
+
+        fetch('/user', request_options)
+            .then((data) => resolve(data.json()))
+            .catch((error) => reject(`[error]: ${error}`));
+    })
+}

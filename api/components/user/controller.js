@@ -1,6 +1,9 @@
-const storage = require('./storage')
+const storage = require('./storage') 
+const user = require('./model')
 
-function agregarUser( dato ) {
+async function agregarUser( dato ) {
+    dato.password = await user.encrypted_password(dato.password)
+    console.log("tiene"+ dato.password)
     return new Promise((resolve, reject) => {
         resolve( storage.agregar( dato ) )
     })

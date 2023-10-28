@@ -8,10 +8,6 @@ async function agregarUser( dato ) {
 
 async function obtenerUser( filtro ) {
     let mi_filtro = {}
-
-    if (filtro.ruc != null) {
-        mi_filtro = { ruc: filtro.ruc }
-    }
     const resultado = await Model.find( mi_filtro )
     return resultado
 }
