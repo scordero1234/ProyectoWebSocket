@@ -108,6 +108,12 @@ function guardar_representantelegal() {
         } )
 }
 
+function cancelar_producto() { 
+    document.getElementById("cancelar").addEventListener("click", function() {
+        history.back();
+      });
+}
+
 // Función para cargar opciones en el combo
 function cargarCombo() {
     var comboBox = document.getElementById("empresa");  
