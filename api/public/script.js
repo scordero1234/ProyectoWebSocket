@@ -50,6 +50,8 @@ function cargarEnTabla() {
 }
  
 function guardar() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
 
     let ruc_ = document.getElementById('ruc').value
     let cedula_ = document.getElementById('cedula').value
@@ -82,13 +84,15 @@ function guardar() {
                  empresas: empresas_}
 
     console.log(data);
-
+  console.log ('token enviado'+ token)
     return new Promise((resolve, reject) => {
         const request_options = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json' // Indicar que se envían datos JSON
+                'Content-Type': 'application/json', // Indicar que se envían datos JSON
+                'x-access-token': token
             },
+            
             body: JSON.stringify(data) // Convertir los datos a JSON
         };
 
@@ -101,7 +105,11 @@ function guardar() {
 function guardar_representantelegal() {
     guardar()
         .then( (response) => {
-            alert('Registro exitoso.')
+            if ('message' in response) { 
+                alert (response.message) 
+            } else {
+                alert('Registro exitoso.')
+            }  
         } )
         .catch( (error) => {
             alert('Error al ingresar.')
@@ -212,5 +220,54 @@ function guardar_usuario() {
         } )
         .catch( (error) => {
             alert('Error al ingresar.')
+        } )
+}
+
+//login
+
+function login() {
+
+   
+    let email_ = document.getElementById('email').value
+    let contrasenia_ = document.getElementById('contrasenia').value   
+
+    // Crea un objeto JSON con los datos necesarios de representante legal
+    let data = { email:email_, 
+                 password:contrasenia_ }
+
+    console.log(data);
+
+    return new Promise((resolve, reject) => {
+        const request_options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Indicar que se envían datos JSON
+            },
+            body: JSON.stringify(data) // Convertir los datos a JSON
+        };
+        console.log('paso ');
+        fetch('/auth/signin/', request_options)
+            .then((data) => resolve(data.json()))
+            
+
+            .catch((error) => reject(`[error]: ${error}`));
+    })
+} 
+
+function login_usuario() {
+        login()
+        .then( (response) => { 
+            
+            if (response.message === 'Logueo Exitoso') {
+                const token = response.token
+                alert('logeo exitoso')
+                window.location.href = `/representantelegal.html?token=${token}`;
+            } else {
+                alert(response.message) 
+            } 
+            console.log(response.token)
+        } )
+        .catch( (error) => {
+            alert('Error al loguearse.')
         } )
 }
